@@ -1,0 +1,4 @@
+joblib
+openai
+python-dotenv
+tenacity
