@@ -24,19 +24,24 @@ def run(goal):
 
 if __name__ == '__main__':
     print(run(sentence("I love bananas.")))
+    # [' I love bananas.']
     print(run(conj(
         sentence("I love bananas."),
         sentence("I don't love bananas."))))
+    # []
     print(run(disj(
         sentence("I love bananas."),
         sentence("I don't love bananas."))))
+    # [' I love bananas.', " I don't love bananas."]
     print(run(disj(
         conj(
             sentence("I love bananas."),
             sentence("I love apples.")),
         sentence("I don't like fruits."))))
+    # [' I love bananas. I love apples.', " I don't like fruits."]
     print(run(conj(
         disj(
             sentence("I love bananas."),
             sentence("I love apples.")),
         sentence("I don't like fruits."))))
+    # []
