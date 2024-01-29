@@ -8,7 +8,7 @@ load_dotenv()
 memory = Memory("cachegpt")
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-MODEL = "gpt-3.5-turbo"
+MODEL = "gpt-4"
 
 
 @retry(wait=wait_random_exponential(min=10, max=30),
@@ -28,7 +28,7 @@ def ex(content, model):
     messages = [
         {
             "role": "system",
-            "content": "You are a constraint solver. You are given sentences and return whether they are consistent. You should return False or True. If there is a simple statement, just return True."
+            "content": "You are a constraint solver. You are given sentences and return whether they are consistent. You should return False or True, followed by an explanation. If there is a simple statement, just return True."
         },
         {
             "role": "user",

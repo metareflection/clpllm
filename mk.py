@@ -109,6 +109,7 @@ def appendo(x, y, z):
                                                                                                                       appendo(d, y, res)))))))(s_c)]
     return goal
 
+
 if __name__ == '__main__':
     print(run(1, sentence("I love bananas.")))
     # [' I love bananas.']
@@ -170,3 +171,14 @@ if __name__ == '__main__':
     #  (' x#0 is a pair consisting of a#2 and d#3 . cons(p, cons(q, cons(r, nil))) is a pair consisting of a#2 and res#4 . d#3 is an empty list y#1 is the same as res#4.', 5),
     #  (' x#0 is a pair consisting of a#2 and d#3 . cons(p, cons(q, cons(r, nil))) is a pair consisting of a#2 and res#4 . d#3 is a pair consisting of a#5 and d#6 . res#4 is a pair consisting of a#5 and res#7 . d#6 is an empty list y#1 is the same as res#7.', 8),
     #  (' x#0 is a pair consisting of a#2 and d#3 . cons(p, cons(q, cons(r, nil))) is a pair consisting of a#2 and res#4 . d#3 is a pair consisting of a#5 and d#6 . res#4 is a pair consisting of a#5 and res#7 . d#6 is a pair consisting of a#8 and d#9 . res#7 is a pair consisting of a#8 and res#10 . d#9 is an empty list y#1 is the same as res#10.', 11)]
+    print(run(1,conj(sentence("John always fulfils his obligations."),
+                     conj(sentence("John must attend all meetings he knows of."),
+                          conj(sentence("There are no meetings for the next three days."),
+                               sentence("John just began a mandatory three day leave where he will be unavailable for meetings."))))))
+    # [(' John always fulfils his obligations. John must attend all meetings he knows of. There are no meetings for the next three days. John just began a mandatory three day leave where he will be unavailable for meetings.', 0)]
+    print(run(1,conj(sentence("John always fulfils his obligations."),
+                     conj(sentence("John must attend all meetings he knows of."),
+                          conj(sentence("John just began a mandatory three day leave where he will be unavailable for meetings."),
+                               conj(sentence("John learned yesterday about an upcoming meeting's time and place."),
+                                    sentence("The meeting is scheduled for tomorrow.")))))))
+    # []
