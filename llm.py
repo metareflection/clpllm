@@ -10,7 +10,9 @@ memory = Memory("cachegpt")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 MODEL = "gpt-3.5-turbo"
 
-@retry(wait=wait_random_exponential(min=10, max=30), stop=stop_after_attempt(25))
+
+@retry(wait=wait_random_exponential(min=10, max=30),
+       stop=stop_after_attempt(25))
 def generate(messages, model):
     print("calling GPT... model=" + model)
     return client.chat.completions.create(model=model, messages=messages)
@@ -20,6 +22,7 @@ def generate(messages, model):
 def ask(messages, model):
     response = generate(messages, model)
     return response.choices[0].message.content
+
 
 def ex(content, model):
     messages = [
@@ -34,7 +37,7 @@ def ex(content, model):
     ]
     response = ask(messages, model)
     return response
-    
+
 def constraint(content):
     r = ex(content, MODEL)
     print(r)
