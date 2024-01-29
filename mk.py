@@ -98,6 +98,17 @@ def ancestor(x, y):
     return goal
 
 
+def appendo(x, y, z):
+    def goal(s_c):
+        return [lambda: disj(conj(sentence("".join([x, " is an empty list"])),
+                                  sentence("".join([y, " is the same as ", z, "."]))),
+                             callFresh("a",
+                                       lambda a: callFresh("d",
+                                                           lambda d: conj(sentence("".join([x, " is a pair consisting of ", a, " and ", d,  " ."])),
+                                                                          callFresh("res", lambda res: conj(sentence("".join([z, " is a pair consisting of ", a, " and ", res,  " ."])),
+                                                                                                                      appendo(d, y, res)))))))(s_c)]
+    return goal
+
 if __name__ == '__main__':
     print(run(1, sentence("I love bananas.")))
     # [' I love bananas.']
@@ -154,3 +165,8 @@ if __name__ == '__main__':
     # [(' x#0 is the parent of Kathy.', 2),
     #  (' x#0 is the parent of z#2. z#2 is the parent of Kathy.', 3),
     #  (' x#0 is the parent of z#2. z#2 is the parent of z#3. z#3 is the parent of Kathy.', 4)]
+    print(run(10, callFresh("x", lambda x: callFresh("y", lambda y: appendo(x, y, "cons(p, cons(q, cons(r, nil)))")))))
+    # [(' x#0 is an empty list y#1 is the same as cons(p, cons(q, cons(r, nil))).', 2),
+    #  (' x#0 is a pair consisting of a#2 and d#3 . cons(p, cons(q, cons(r, nil))) is a pair consisting of a#2 and res#4 . d#3 is an empty list y#1 is the same as res#4.', 5),
+    #  (' x#0 is a pair consisting of a#2 and d#3 . cons(p, cons(q, cons(r, nil))) is a pair consisting of a#2 and res#4 . d#3 is a pair consisting of a#5 and d#6 . res#4 is a pair consisting of a#5 and res#7 . d#6 is an empty list y#1 is the same as res#7.', 8),
+    #  (' x#0 is a pair consisting of a#2 and d#3 . cons(p, cons(q, cons(r, nil))) is a pair consisting of a#2 and res#4 . d#3 is a pair consisting of a#5 and d#6 . res#4 is a pair consisting of a#5 and res#7 . d#6 is a pair consisting of a#8 and d#9 . res#7 is a pair consisting of a#8 and res#10 . d#9 is an empty list y#1 is the same as res#10.', 11)]
