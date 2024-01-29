@@ -1,8 +1,8 @@
 import llm
 
 
-def var(n):
-    return str(n)
+def var(vname, n):
+    return vname + "#" + str(n)
 
 
 def stream_append(stream1, stream2):
@@ -32,10 +32,10 @@ def stream_append_map(stream, g):
             return stream_append(g(head), stream_append_map(tail, g))
 
 
-def callFresh(f):
+def callFresh(vname, f):
     def inner(s_c):
         c = s_c[1]
-        new_var = var(c)
+        new_var = var(vname, c)
         new_state = (s_c[0], c + 1)
         return f(new_var)(new_state)
     return inner
@@ -89,7 +89,7 @@ def test(x):
 def ancestor(x, y):
     def goal(s_c):
         return [lambda: disj(sentence("".join([x, " is the parent of ", y, "."])),
-                             callFresh(lambda z:
+                             callFresh("z", lambda z:
                                        conj(
                                            sentence(
                                                "".join(
@@ -122,29 +122,35 @@ if __name__ == '__main__':
         sentence("I don't like fruits."))))
     # []
     print(run(2, callFresh
-              (lambda x: conj(disj(
+              ("x", lambda x: conj(disj(
                                   sentence("I love bananas."),
                                   sentence("I love apples.")),
                               sentence("I don't like fruits.")))))
     # []
     print(run(2, callFresh
-              (lambda x: conj(disj(
-                                  sentence(("".join(["I love ", "x#", x, " ."]))),
+              ("x", lambda x: conj(disj(
+                                  sentence(("".join(["I love ", x, " ."]))),
                                   sentence("I love apples.")),
-                              sentence("".join(["I don't like ", "x#", x, " ."]))))))
+                              sentence("".join(["I don't like ", x, " ."]))))))
     # [(" I love apples. I don't like x#0 .", 1)]
     print(run(2, callFresh
-              (lambda x: conj(disj(
+              ("x", lambda x: conj(disj(
                                   sentence(
-                                      ("".join(["I love ", "x#", x, " ."]))),
+                                      ("".join(["I love ", x, " ."]))),
                                   sentence("I love apples.")),
                               callFresh
-                              (lambda x:
+                              ("x", lambda x:
                                sentence(
-                                   "".join(["I don't like ", "x#", x, " ."]
+                                   "".join(["I don't like ", x, " ."]
                                            )))))))
     # [(" I love x#0 . I don't like x#1 .", 2), (" I love apples. I don't like x#1 .", 2)]
     print(run(3, test("John")))
     # [(' My favorite food are pomegranates', 0)]
-    print(run(3, callFresh(lambda x: callFresh(lambda y: ancestor("John", "Kathy")))))
-    # [(' John is the parent of Kathy.', 2), (' John is the parent of 2. 2 is the parent of Kathy.', 3), (' John is the parent of 2. 2 is the parent of 3. 3 is the parent of Kathy.', 4)]
+    print(run(3, callFresh("x", lambda x: callFresh("y", lambda y: ancestor("John", "Kathy")))))
+    # [(' John is the parent of Kathy.', 2),
+    #  (' John is the parent of z#2. z#2 is the parent of Kathy.', 3),
+    #  (' John is the parent of z#2. z#2 is the parent of z#3. z#3 is the parent of Kathy.', 4)]
+    print(run(3, callFresh("x", lambda x: callFresh("y", lambda y: ancestor(x, "Kathy")))))
+    # [(' x#0 is the parent of Kathy.', 2),
+    #  (' x#0 is the parent of z#2. z#2 is the parent of Kathy.', 3),
+    #  (' x#0 is the parent of z#2. z#2 is the parent of z#3. z#3 is the parent of Kathy.', 4)]
