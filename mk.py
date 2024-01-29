@@ -110,6 +110,19 @@ def appendo(x, y, z):
     return goal
 
 
+# Does not seem to work super duper well right now.
+def route():
+    def goal(s_c):
+        return [lambda:
+                disj(sentence("You stop here"),
+                     conj(disj(sentence("You next go one block to the right, but do not stop yet."),
+                               disj(sentence("You next go one block to the left, but do not stop yet."),
+                                    disj(sentence("You next go one block up, but do not stop yet."),
+                                         sentence("You next go one block down, but do not stop yet.")))),
+                          route()))(s_c)]
+    return goal
+
+
 if __name__ == '__main__':
     print(run(1, sentence("I love bananas.")))
     # [' I love bananas.']
@@ -182,3 +195,5 @@ if __name__ == '__main__':
                                conj(sentence("John learned yesterday about an upcoming meeting's time and place."),
                                     sentence("The meeting is scheduled for tomorrow.")))))))
     # []
+    print(run(6,conj(sentence("You are in a city with a grid layout. You must end your walk at the same place you start. You start your walk."), route())))
+    # Bad behavior.
