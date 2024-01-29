@@ -196,4 +196,4 @@ if __name__ == '__main__':
                                     sentence("The meeting is scheduled for tomorrow.")))))))
     # []
     print(run(6,conj(sentence("You are in a city with a grid layout. You must end your walk at the same place you start. You start your walk."), route())))
-    # Bad behavior.
+    # Bad behavior. Doesn't work on this one. Maybe better prompting w/constraints?
