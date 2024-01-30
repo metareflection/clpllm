@@ -110,7 +110,19 @@ def appendo(x, y, z):
     return goal
 
 
-# Does not seem to work super duper well right now.
+def john_route():
+    def goal(s_c):
+        return [lambda:
+                disj(sentence("John ends his walk at this location."),
+                     conj(disj(sentence("John next goes one block to the right, but he does not stop yet."),
+                               disj(sentence("John next goes one block to the left, but he does not stop yet."),
+                                    disj(sentence("John next goes one block up, but he does not stop yet."),
+                                         sentence("John next goes one block down, but he does not stop yet.")))),
+                          john_route()))(s_c)]
+    return goal
+
+
+# Does not seem to work super duper well right now. Confusion using "You" in content for role and constraints?
 def route():
     def goal(s_c):
         return [lambda:
@@ -195,5 +207,7 @@ if __name__ == '__main__':
                                conj(sentence("John learned yesterday about an upcoming meeting's time and place."),
                                     sentence("The meeting is scheduled for tomorrow.")))))))
     # []
-    print(run(6,conj(sentence("You are in a city with a grid layout. You must end your walk at the same place you start. You start your walk."), route())))
+    print(run(5,conj(sentence("John is standing on a grid. John begins his walk. John must end his walk at the same place he starts."), john_route())))
+    # Slow, but it might be working.
+    # print(run(6,conj(sentence("You are in a city with a grid layout. You must end your walk at the same place you start. You start your walk."), route())))
     # Bad behavior. Doesn't work on this one. Maybe better prompting w/constraints?
