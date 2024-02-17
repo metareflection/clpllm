@@ -147,6 +147,15 @@ def jugseq():
                           jugseq()))(s_c)]
     return goal
 
+
+# + - -
+
+
+
+
+
+
+
 if __name__ == '__main__':
     print(run(1, sentence("I love bananas.")))
     # [' I love bananas.']
@@ -220,7 +229,7 @@ if __name__ == '__main__':
                                     sentence("The meeting is scheduled for tomorrow.")))))))
     # []
     print(run(2,conj(sentence("John is standing on a grid. John begins his walk. John must end his walk at the same place he starts."), john_route())))
-    # Slow, but it might be working.
+    # Slow, but it might be working. FAILS.
     #print(run(1,conj(sentence("You have a 4 gallon jug and a 3 gallon jug, both empty. Your sequence must end with one of the two jugs filled with exactly two gallons, and the other jug empty."),jugseq())))
     # []
     # print(run(6,conj(sentence("You are in a city with a grid layout. You must end your walk at the same place you start. You start your walk."), route())))
