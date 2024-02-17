@@ -109,7 +109,6 @@ def appendo(x, y, z):
                                                                                                                       appendo(d, y, res)))))))(s_c)]
     return goal
 
-
 def john_route():
     def goal(s_c):
         return [lambda:
@@ -134,6 +133,19 @@ def route():
                           route()))(s_c)]
     return goal
 
+
+def jugseq():
+    def goal(s_c):
+        return [lambda:
+                disj(sentence("One of the two jugs now has exactly two gallons in it, and the other is now empty. We now stop the sequence"),
+                     conj(disj(disj(sentence("We now fill the 4 gallon jug to capacity, but do not stop the sequence yet."),
+                                    sentence("We now fill the 3 gallon jug to capacity, but do not stop the sequence yet.")),
+                               disj(disj(sentence("We now empty 4 gallon jug, but do not stop the sequence yet."),
+                                         sentence("We now empty 3 gallon jug, but do not stop the sequence yet.")),
+                                    disj(sentence("We pour all the water that we can from the 4 gallon jug into the 3 gallon jug, until either the former is empty or the latter is full. We do not stop the sequence yet."),
+                                         sentence("We pour all the water that we can from the 3 gallon jug into the 4 gallon jug, until either the former is empty or the latter is full. We do not stop the sequence yet.")))),
+                          jugseq()))(s_c)]
+    return goal
 
 if __name__ == '__main__':
     print(run(1, sentence("I love bananas.")))
@@ -207,7 +219,9 @@ if __name__ == '__main__':
                                conj(sentence("John learned yesterday about an upcoming meeting's time and place."),
                                     sentence("The meeting is scheduled for tomorrow.")))))))
     # []
-    print(run(5,conj(sentence("John is standing on a grid. John begins his walk. John must end his walk at the same place he starts."), john_route())))
+    print(run(2,conj(sentence("John is standing on a grid. John begins his walk. John must end his walk at the same place he starts."), john_route())))
     # Slow, but it might be working.
+    #print(run(1,conj(sentence("You have a 4 gallon jug and a 3 gallon jug, both empty. Your sequence must end with one of the two jugs filled with exactly two gallons, and the other jug empty."),jugseq())))
+    # []
     # print(run(6,conj(sentence("You are in a city with a grid layout. You must end your walk at the same place you start. You start your walk."), route())))
     # Bad behavior. Doesn't work on this one. Maybe better prompting w/constraints?
