@@ -20,3 +20,11 @@ Also install the Python dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+
+To use the `ollama` server and model file
+
+`brew install ollama`
+`ollama pull orca2`
+`ollama create constraint_solver -f constraint_solver.model`
+
+Then start the server and you can communicate with the model via `ollama run constraint_solver` 
