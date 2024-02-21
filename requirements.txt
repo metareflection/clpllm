@@ -2,3 +2,4 @@ joblib
 openai
 python-dotenv
 tenacity
+langchain_community
