@@ -109,6 +109,8 @@ https://en.wikipedia.org/wiki/The_Thirty-Six_Dramatic_Situations
 These tell you what elements you *need* to have already for the
 situation to manifest, and then a rough description of what happens.
 
+Cf. https://en.wikipedia.org/wiki/Vladimir_Propp#Narrative_structure
+
 ** Difficulty
 
 - One scene can resolve multiple narrative arcs, e.g Gift of Magi
