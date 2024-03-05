@@ -3,3 +3,5 @@ openai
 python-dotenv
 tenacity
 langchain_community
+ollama
+rich

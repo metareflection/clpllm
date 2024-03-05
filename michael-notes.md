@@ -1,73 +1,149 @@
+-*- mode: org -*-
 
-# Michael's idea, or ideas on Michael's idea
+* LLM is the solver for partially ground constraints (basically skolem constants in the constraints themselves).
 
-Michael's suggestion was for a "reifier" to, at the end, create a fleshed-out story about the adumbrated pieces and facts (skeleton) that we produce from the search. The search should hopefully be able to, from what we've accumulated so far, add consistent pieces (like an "and then what happened" to the story, based upon what's come before).
+* What remains is the role for: 
+- search
+- backtracking
+- logic variables
 
-Also, and this I had imagined as a different kind of constraint from the "continue the story" mode, but to generate particular details for a character, location that we ask for, based upon the information we know about it.
+* Reifier
+Michael's suggestion was employ the LLM in (also in) the reifier; have
+it /generate/ values for the variables in the output (for instance in
+a story), like it's solving a Mad Lib.
 
-For a noun, pull all the information we know about that noun, and then ask for a something related to that noun. Job, house, outfit, transportation. Time
+* filler-inner
+A complementary idea is to have the LLM generate the story /skeleton/,
+and then iteratively ask the LLM to fill in passages and scenes as it
+goes. 
 
-This isn't quite the CLP thing that I'd had in mind from before. But I think what we might be getting to is something where you could keep around the basic skeleton of the story, which takes up less context, and then you add onto it the kinda "literary fluff" detail things, and you can keep that outside of the main context, so you can do more interesting intricate story generation from "just the facts" POV.
+Step 1. Get completed story skeleton
+Step 2. Create passages consistent w/this part and full story context.
+[CLP doesn't show up much in this part, it'd be in the first].
+
+* Story skeleton.
+
+Why would you want CLP or search for something like this. Actual
+stories don't have that fractal shape to them. 
+
+**Episodic stories 
+
+Episodic stories go sequence by sequence (Harman cycle)
+
+These don't have an arbitrarily deep 2nd direction, though.
+
+*** Hero's journey cycle
+The Ordinary World: the hero is seen in their everyday life
+The Call to Adventure: the initiating incident of the story
+Refusal of the Call: the hero experiences some hesitation to answer the call
+Meeting with the Mentor: the hero gains the supplies, knowledge, and confidence needed to commence the adventure
+Crossing the First Threshold: the hero commits wholeheartedly to the adventure
+Tests, Allies, and Enemies: the hero explores the special world, faces trial, and makes friends and enemies
+Approach to the Innermost Cave: the hero nears the center of the story and the special world
+The Ordeal: the hero faces the greatest challenge yet and experiences death and rebirth
+Reward: the hero experiences the consequences of surviving death
+The Road Back: the hero returns to the ordinary world or continues to an ultimate destination
+The Resurrection: the hero experiences a final moment of death and rebirth so they are pure when they reenter the ordinary world
+Return with the Elixir: the hero returns with something to improve the ordinary world
+
+*** Harman Episodic Circle
+A character is in a zone of comfort or familiarity.
+They desire something.
+They enter an unfamiliar situation.
+They adapt to that situation.
+They get that which they wanted.
+They pay a heavy price for it.
+They return to their familiar situation.
+They have changed as a result of the journey.
+
+*** Episodic stories with story-in-story components
+
+Maybe each would need an order of magnitude more "interest/excitement**
+threshhold in order to allow to go that direction :/
+
+I'm not sure I see the benefit of going that direction. 
+
+*** Meta: Narratology isn't our area of expertise, feels out on a limb here.
+
+* I was thinking what about natural language versions of legal, ethical, etc
+
+** Useful if it's better for LLM to just straight constraint solve on nat.lang.text as is rather than 2-step (encode as facts, then LP over**.
+
+Encoding fancy logics and constraints *is* a difficult problem, and can require whole-system re-encoding. 
+
+*** Scheduling?
+
+You get the schedules as text messages, it's your job now to make sure
+that every shift has 2 people, that it's consistent with each person's
+shift.
+
+*** Not clear though that Prolog-style LP is the best approach?
+- Funlog
+- Datalog
+- Arntzenius-log
+- ASP
+
+** I don't like the *is-interesting*** check as we came up with it
+
+I suspect something w/a maximization function and usual AI backjumping
+kinda stuff will be more effective, if that's the technique.
+
+Large enough the LLM cannot by itself keep track, and you'd need to
+break up the problem. 
+
+* LP *is* generate-and-test
+
+At it's heart LP is a search based generation system, the conceit is
+that you can improve the behavior and augment the search with known
+data.
+
+** Imptly, benefits from partial knowledge to specialize.
+When you have some thing that you're aware of, maybe the equivalent of
+desired skolem constants for variables, or better some partial
+structure, and you want to help fill in the rest of it.
+
+** A tad bit of promise:
+
+https://en.wikipedia.org/wiki/The_Thirty-Six_Dramatic_Situations
+
+These tell you what elements you *need* to have already for the
+situation to manifest, and then a rough description of what happens.
+
+** Difficulty
+
+- One scene can resolve multiple narrative arcs, e.g Gift of Magi
+- Some may be left unresolved at the end, e.g. Lady or Tiger
+- Not clear there's a general tool to extract from movie, episodic tv, folk tale, short story, novel + genres
+
+** Semi-structured?
+
+MUD style directions and places
+choose-your-own-adventure
+
+*** (Are these now strictly dominated by full open-ended storytelling improv D&D style?)
+D&D is manual LLM improv w/dice for randomness.
 
 
-# Route
+
+
+
+* Route
 
 Route sucks right now.
 
-No wonder, b/c obv the wrong way to do it. The description of the problem does lots to
+No wonder, b/c obv the wrong way to do it. The description of the
+problem does lots to
 
 
-John takes 2*n steps. A circuit must be (u+l) + (d + r), in some sequence
+John takes 2*n steps. A circuit must be (u+l) + (d + r), in some
+sequence
+
 u=d
 r=l
+
 u+d+r+l = number of steps, in some order.
 
-John takes n+m steps up/left, and if it's to be a circuit, he must also take n steps down and m steps right. So we could represent that information compactly somehow.
+John takes n+m steps up/left, and if it's to be a circuit, he must
+also take n steps down and m steps right. So we could represent that
+information compactly somehow.
 
-
- search being a different kind of mode than the
-
-
-# Story shape
-
-1. Setup
-2. Tension
-3. First resolution (calls to the same relation that does a twist)
-4. Second tension
-5. Final resolution
-
-# story within a story : substory
-
-sibling branches are different kinds of plot devices
-child nodes next narrative arc
-
-interesting check. 
-
-;; https://en.wikipedia.org/wiki/The_Seven_Basic_Plots
-;; Definition: An event forces the main character to change their ways and often become a better individual.
-(defrel (rebirth text)
-  (fresh (setup event)
-    (== setup (gen "" "setup"))
-    (== event (gen setup "tragic event"))
-    (fresh (story-so-far)
-      (appendo setup event story-so-far)
-      (fresh (res)
-        (== res (gen story-so-far "resolution"))
-        (appendo story-so-far res text)))))
-
-(defrel (story text)
-  (conde
-   [(overcoming-the-monster text)]
-   [(rebirth text)]))
-
-## DSL nicer
-
-Make it so that you could "gen+append to existing"
-Doing the recursion for subplots `(conde (change-ways) (become-better-individual))`
-turn to a microKanrenesque pythonesque
-more plots stories and different structures
-IsInteresting checks to kill branches (other ways to prune?)
-Role of the reifier (story shape that's consistent)->dialog, fully fleshed out scenes, etc.
-Ping Evan Donahug?
-Can GPT write a better story w/our help or by itself.
-(And by what metric?? Have it assess itself vs our?)
