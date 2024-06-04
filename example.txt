@@ -1,3 +1,5 @@
+https://chatgpt.com/share/71e9b4b4-04b7-4721-bdce-584aa0a9bac7
+
 I am a manager. I have asked 20 employees for their availability this week. Give me their responses. As reference, for my shop I need at least 2 people available each shift, I prefer to have 3 for the busier ones, and I always need someone senior there to open.
 
 What I want from you is 20 plausible responses that I might have gotten over text.
@@ -48,7 +50,11 @@ Certainly! Here are 20 plausible responses you might receive from employees rega
 
 These responses cover a variety of availability and preferences, including days available, shift preferences, and restrictions, which reflect common scheduling considerations in a retail or service environment.
 
+----
 
+Please come up with an acceptable schedule for all 20 of those employees. We will use the emplids 1..20 for labeling them.
+
+---
 
 Given your staffing needs and the availability responses from 20 employees, let's create a weekly schedule that ensures:
 
@@ -106,3 +112,5 @@ Here's an attempt to distribute the shifts among your employees based on their a
 - In real-life scheduling, additional considerations such as total weekly hours, labor laws, and more detailed employee preferences would need to be accounted for.
 
 This schedule aims to distribute shifts equitably among employees based on their stated availability while ensuring operational requirements are met. Adjustments may be necessary based on further specifics of your operational needs and employee roles.
+
+---
