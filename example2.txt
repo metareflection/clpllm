@@ -1,0 +1,52 @@
+
+1. "I can work Monday and Wednesday mornings, or Thursday and Friday evenings. Cannot do Tuesday at all."
+
+2. "Available Tuesday to Thursday mornings, or any afternoon except Friday. I need Saturday off."
+
+3. "I can work Monday or Wednesday, but not both. Prefer late shifts on these days."
+
+4. "Happy to work Friday or Sunday, but not both. Available all other days, preferably mornings."
+
+5. "Available Monday through Wednesday afternoons. Either I can take the Thursday morning shift or the Friday evening shift, but not both."
+
+6. "This week, I can work early shifts on Tuesday or Thursday, but if I work Thursday, I cannot work Monday at all."
+
+7. "Available for evening shifts on Monday and Wednesday, or morning shifts on Friday and Saturday. Not available Tuesday."
+
+8. "I can work any shift on Wednesday or Thursday, but if I take Thursday, I need Tuesday off completely."
+
+9. "I can work any two consecutive days between Monday and Thursday, but I cannot work both Monday and Thursday."
+
+10. "I’m available for any morning shifts on Tuesday and Thursday, but if I work on Thursday, I need Wednesday off."
+
+11. "Can work either Monday and Wednesday or Thursday and Saturday, but not both pairs. Prefer morning shifts."
+
+12. "Available Tuesday to Friday afternoons. If I work on Tuesday, I cannot work Thursday evening."
+
+13. "Can take Monday and Tuesday shifts or Wednesday and Thursday shifts, but not both. I need Friday and Sunday off."
+
+14. "Available for late shifts on Monday and Wednesday, or any shift on Friday, but not both. Need Tuesday off."
+
+15. "I can work any opening shifts on Monday, Wednesday, and Friday, but if I work Friday, I cannot do Monday."
+
+16. "Happy to work Thursday and Friday, but if I take Thursday, I need Saturday off. Available all other days."
+
+17. "I can work Monday or Wednesday, but if I work Monday, I need to leave by 3 PM. If I work Wednesday, I can stay late."
+
+18. "Available any shifts Tuesday, Thursday, or Saturday, but if I work Tuesday, I cannot work Thursday evening."
+
+19. "I can work Monday through Wednesday mornings or Friday and Saturday evenings, but not both sets."
+
+20. "I'm flexible with shifts on Monday, Wednesday, and Friday, but if I work Friday, I need Monday off."
+
+21. "Available for any morning shifts on Monday, Tuesday, or Thursday, but if I work Tuesday, I cannot work Thursday morning."
+
+22. "I can work late shifts on Wednesday and Thursday or early shifts on Friday and Saturday, but not both."
+
+23. "Available for any shifts on Monday or Wednesday, but if I work Monday, I need Tuesday off completely."
+
+24. "I can work any day except Tuesday, but if I work Thursday, I need either Monday or Wednesday off, but not both."
+
+25. "Available for early shifts on Tuesday and Thursday, or late shifts on Wednesday and Friday, but not both."
+
+26. "I can work any two of the following days: Monday Wednesday Thursday Friday."
